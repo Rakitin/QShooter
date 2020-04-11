@@ -1,15 +1,21 @@
 #include <QDebug>
-#include <QPainter>
 #include <QKeyEvent>
+#include "Object.h"
 #include "GameForm.h"
 #include "ui_GameForm.h"
 
 GameForm::GameForm(QWidget *parent) :
     QWidget(parent),
-    ui(new Ui::GameForm)
+    ui(new Ui::GameForm),
+    m_camera(m_world)
 {
     ui->setupUi(this);
     setFocusPolicy(Qt::StrongFocus);
+
+    m_world.add(new Object({{10, 10}, {20, 10}, {20, 20}, {10, 20}}));
+    m_world.add(&m_camera);
+
+    startTimer(200);
 
 }
 
@@ -20,27 +26,32 @@ GameForm::~GameForm()
 
 void GameForm::timerEvent(QTimerEvent *pe)
 {
-
+    Q_UNUSED(pe)
+    repaint();
 }
 
 void GameForm::keyPressEvent(QKeyEvent *pe)
 {
     switch (pe->key()) {
     case Qt::Key_Left:
+        m_camera.turnLeft();
+        break;
     case Qt::Key_A:
-        qDebug() << "Left";
+        m_camera.moveLeft();
         break;
     case Qt::Key_Right:
+        m_camera.turnRight();
+        break;
     case Qt::Key_D:
-        qDebug() << "Right";
+        m_camera.moveRight();
         break;
     case Qt::Key_Up:
     case Qt::Key_W:
-        qDebug() << "Up";
+        m_camera.moveForward();
         break;
     case Qt::Key_Down:
     case Qt::Key_S:
-        qDebug() << "Down";
+        m_camera.moveBack();
         break;
     default:
         QWidget::keyPressEvent(pe);
@@ -50,9 +61,19 @@ void GameForm::keyPressEvent(QKeyEvent *pe)
 
 void GameForm::paintEvent(QPaintEvent *pe)
 {
+    Q_UNUSED(pe)
     QPainter painter(this);
+    redraw(painter);
+}
+
+void GameForm::redraw(QPainter &painter)
+{
+//    qDebug() << __FILE__ << __FUNCTION__;
     QRect viewport = painter.viewport();
+    QBrush brush(Qt::black);
+    painter.setBrush(brush);
     QRect background(viewport.left(), viewport.top(), viewport.width() - 1, viewport.height() - 1);
     painter.drawRect(background);
 
+    m_world.draw(painter);
 }

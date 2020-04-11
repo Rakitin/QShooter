@@ -26,6 +26,7 @@ SOURCES += \
 HEADERS += \
     Camera.h \
     GameForm.h \
+    IObject.h \
     MainWindow.h \
     Object.h \
     World.h

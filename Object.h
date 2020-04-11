@@ -2,12 +2,15 @@
 
 #include <QPoint>
 #include <QVector>
+#include <QPainter>
+#include "IObject.h"
 
 
-class Object
+class Object : public IObject
 {
 public:
-    Object(QPoint position = {0, 0});
+    Object(QVector<QPoint> points = {}, QPoint position = {0, 0});
+    void draw(QPainter &painter) const;
 
 private:
     QVector<QPoint> m_points;

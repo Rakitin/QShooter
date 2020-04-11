@@ -1,6 +1,9 @@
 #pragma once
 
 #include <QWidget>
+#include <QPainter>
+#include "World.h"
+#include "Camera.h"
 
 namespace Ui {
 class GameForm;
@@ -21,4 +24,9 @@ protected:
 
 private:
     Ui::GameForm *ui;
+    World m_world;
+    Camera m_camera;
+
+    void redraw(QPainter &painter);
+
 };
