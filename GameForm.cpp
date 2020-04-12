@@ -12,7 +12,10 @@ GameForm::GameForm(QWidget *parent) :
     ui->setupUi(this);
     setFocusPolicy(Qt::StrongFocus);
 
-    m_world.add(new Object({{10, 10}, {20, 10}, {20, 20}, {10, 20}}));
+    m_world.add(new Object({{0, 0}, {600, 0}, {600, 10}, {0, 10}}));
+    m_world.add(new Object({{0, 0}, {0, 600}, {10, 600}, {10, 0}}));
+    m_world.add(new Object({{0, 600}, {600, 600}, {600, 590}, {0, 590}}));
+    m_world.add(new Object({{590, 0}, {600, 0}, {600, 600}, {590, 600}}));
     m_world.add(&m_camera);
 
     startTimer(200);

@@ -23,6 +23,9 @@ void Camera::draw(QPainter &painter) const
     painter.setBrush(brush);
     int d = 10;
     painter.drawEllipse(QRect(m_position.x() - d/2, m_position.y() - d/2, d, d));
+
+
+//    painter.drawLine()
 }
 
 void Camera::moveForward()
