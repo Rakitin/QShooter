@@ -8,7 +8,7 @@
 class Camera : public IObject
 {
 public:
-    Camera(World &world, QPoint position = {50, 50}, double direction = 0);
+    Camera(World &world, QPointF position = {100.0, 100.0}, double direction = 0);
     void draw(QPainter &painter) const;
 
     void moveForward();
@@ -21,7 +21,7 @@ public:
 
 private:
     World &m_world;
-    QPoint m_position;
+    QPointF m_position;
     double m_direction;
 
 };

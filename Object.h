@@ -9,10 +9,10 @@
 class Object : public IObject
 {
 public:
-    Object(QVector<QPoint> points = {}, QPoint position = {0, 0});
+    Object(QVector<QPointF> points = {}, QPointF position = {0.0, 0.0});
     void draw(QPainter &painter) const;
 
 private:
-    QVector<QPoint> m_points;
-    QPoint m_position;
+    QVector<QPointF> m_points;
+    QPointF m_position;
 };
