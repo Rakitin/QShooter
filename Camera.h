@@ -24,4 +24,8 @@ private:
     QPointF m_position;
     double m_direction;
 
+    struct Ray
+    {
+        double distance;
+    };
 };

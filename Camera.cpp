@@ -18,6 +18,7 @@ static double degToRad(double a)
     return a * (M_PI / 180.0);
 }
 
+
 Camera::Camera(World &world, QPointF position, double direction) :
     m_world(world),
     m_position(position),
