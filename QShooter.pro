@@ -17,6 +17,7 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 SOURCES += \
     Camera.cpp \
+    CrossingLine.cpp \
     GameForm.cpp \
     Object.cpp \
     World.cpp \
@@ -25,6 +26,7 @@ SOURCES += \
 
 HEADERS += \
     Camera.h \
+    CrossingLine.h \
     GameForm.h \
     IObject.h \
     MainWindow.h \

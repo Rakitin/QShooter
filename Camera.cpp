@@ -34,22 +34,31 @@ void Camera::draw(QPainter &painter) const
     painter.setBrush(QBrush(Qt::yellow));
     painter.drawEllipse(QRect(m_position.x() - d/2, m_position.y() - d/2, d, d));
 
-//    qDebug() << m_direction;
-
-    double x = m_position.x() + depth * cos(m_direction);
-    double y = m_position.y() + depth * sin(m_direction);
-
-//    qDebug() << "x:" << x << "y:" << y;
-
     painter.setPen(QPen(Qt::blue));
-    painter.drawLine(m_position.x(), m_position.y(), x, y);
+
+    for(double i = 0.0; i < fieldOfView/2.0; i+=degToRad(5.0))
+    {
+//        qDebug() << i;
+//        qDebug() << fieldOfView/2.0;
+        double x;
+        double y;
+
+        x = m_position.x() + depth * cos(m_direction - i);
+        y = m_position.y() + depth * sin(m_direction - i);
+        painter.drawLine(m_position.x(), m_position.y(), x, y);
+
+        x = m_position.x() + depth * cos(m_direction + i);
+        y = m_position.y() + depth * sin(m_direction + i);
+        painter.drawLine(m_position.x(), m_position.y(), x, y);
+
+    }
+
 }
 
 void Camera::moveForward()
 {
     double dx = 2 * cos(m_direction);
     double dy = 2 * sin(m_direction);
-//    qDebug() << "direction:" << radToDeg(m_direction);
     m_position.setX(m_position.x() + dx);
     m_position.setY(m_position.y() + dy);
 }
@@ -75,13 +84,12 @@ void Camera::moveRight()
 void Camera::turnLeft()
 {
     m_direction -= degToRad(1.0);
-
-    qDebug() << "direction:" << radToDeg(m_direction);
+//    qDebug() << "direction:" << radToDeg(m_direction);
 }
 
 void Camera::turnRight()
 {
     m_direction += degToRad(1.0);
-    qDebug() << "direction:" << radToDeg(m_direction);
+//    qDebug() << "direction:" << radToDeg(m_direction);
 }
 
