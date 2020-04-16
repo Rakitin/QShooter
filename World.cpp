@@ -16,3 +16,8 @@ void World::draw(QPainter &painter) const
         (*it)->draw(painter);
     }
 }
+
+const QVector<IObject *> &World::objects() const
+{
+    return m_objects;
+}

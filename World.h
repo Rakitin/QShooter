@@ -12,6 +12,7 @@ public:
     void add(IObject *object);
     void draw(QPainter &painter) const;
 
+    const QVector<IObject *>& objects() const;
 
 private:
     QVector<IObject *> m_objects;

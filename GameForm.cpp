@@ -20,7 +20,6 @@ GameForm::GameForm(QWidget *parent) :
 
     m_world.add(new Object({{300.0, 300.0}, {300.0, 400.0}, {200.0, 400.0}}));
 
-    m_world.add(&m_camera);
 
     startTimer(200);
 
@@ -83,4 +82,5 @@ void GameForm::redraw(QPainter &painter)
     painter.drawRect(background);
 
     m_world.draw(painter);
+    m_camera.draw(painter);
 }

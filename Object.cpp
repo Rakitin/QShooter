@@ -3,9 +3,8 @@
 #include <QBrush>
 #include "Object.h"
 
-Object::Object(QVector<QPointF> points, QPointF position) :
-    m_points(points),
-    m_position(position)
+Object::Object(QVector<QPointF> points) :
+    m_points(points)
 {
 
 }
@@ -22,3 +21,7 @@ void Object::draw(QPainter &painter) const
     painter.drawPolygon(polygon);
 }
 
+const QVector<QPointF> Object::points() const
+{
+    return m_points;
+}

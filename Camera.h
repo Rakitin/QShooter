@@ -1,11 +1,14 @@
 #pragma once
 
+#include <QVector>
 #include <QPoint>
 #include <QPainter>
+#include <QLine>
 #include "IObject.h"
 #include "World.h"
 
-class Camera : public IObject
+
+class Camera
 {
 public:
     Camera(World &world, QPointF position = {100.0, 100.0}, double direction = 0);
@@ -27,5 +30,10 @@ private:
     struct Ray
     {
         double distance;
+        QLineF seg;
     };
+
+    QVector<Ray> m_rays;
+    void update();
+
 };

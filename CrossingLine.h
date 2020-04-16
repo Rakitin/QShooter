@@ -1,6 +1,6 @@
 #pragma once
 
-#include <QPair>
+#include <QLine>
 #include <QPoint>
 
-bool isCrossingLine(QPair<QPointF, QPointF> segment1, QPair<QPointF, QPointF> segment2, QPointF& point);
+bool isCrossingLine(QLineF segment1, QLineF segment2, QPointF& point);
