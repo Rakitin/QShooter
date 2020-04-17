@@ -11,9 +11,10 @@
 class Camera
 {
 public:
-    Camera(World &world, QPointF position = {100.0, 100.0}, double direction = 0);
+    Camera(World &world, QPointF position = {10.0, 10.0}, double direction = 0);
     void draw(QPainter &painter) const;
-
+    void drawView(QPainter &painter) const;
+    void update();
     void moveForward();
     void moveBack();
     void moveLeft();
@@ -34,6 +35,6 @@ private:
     };
 
     QVector<Ray> m_rays;
-    void update();
+
 
 };

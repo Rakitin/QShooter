@@ -13,7 +13,7 @@ void Object::draw(QPainter &painter) const
 {
     QPolygon polygon;
     for(auto it = m_points.constBegin(); it < m_points.constEnd(); ++it) {
-        polygon << (*it).toPoint();
+        polygon << (*it).toPoint() * 10;
     }
 
     painter.setPen(QPen(Qt::red));

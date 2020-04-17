@@ -13,13 +13,15 @@ GameForm::GameForm(QWidget *parent) :
     setFocusPolicy(Qt::StrongFocus);
 
     // walls
-    m_world.add(new Object({{0.0, 0.0}, {600.0, 0.0}, {600.0, 10.0}, {0.0, 10.0}}));
-    m_world.add(new Object({{0.0, 0.0}, {0.0, 600.0}, {10.0, 600.0}, {10.0, 0.0}}));
-    m_world.add(new Object({{0.0, 600.0}, {600.0, 600.0}, {600.0, 590.0}, {0.0, 590.0}}));
-    m_world.add(new Object({{590.0, 0.0}, {600.0, 0.0}, {600.0, 600.0}, {590.0, 600.0}}));
+    m_world.add(new Object({{0.0, 0.0}, {10.0, 0.0}, {10.0, 1.0}, {0.0, 1.0}}));
+    m_world.add(new Object({{0.0, 0.0}, {0.0, 10.0}, {1.0, 10.0}, {1.0, 0.0}}));
+    m_world.add(new Object({{0.0, 10.0}, {10.0, 10.0}, {10.0, 9.0}, {0.0, 9.0}}));
+    m_world.add(new Object({{9.0, 0.0}, {10.0, 0.0}, {10.0, 10.0}, {9.0, 10.0}}));
 
-    m_world.add(new Object({{300.0, 300.0}, {300.0, 400.0}, {200.0, 400.0}}));
+    m_world.add(new Object({{3.0, 3.0}, {3.0, 4.0}, {2.0, 4.0}}));
 
+
+    m_camera.update();
 
     startTimer(200);
 
@@ -81,6 +83,10 @@ void GameForm::redraw(QPainter &painter)
     QRect background(viewport.left(), viewport.top(), viewport.width() - 1, viewport.height() - 1);
     painter.drawRect(background);
 
+
+    m_camera.drawView(painter);
+
     m_world.draw(painter);
     m_camera.draw(painter);
+
 }
