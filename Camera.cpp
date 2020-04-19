@@ -9,6 +9,7 @@
 static const double FIELD_OF_VIEW = 90.0;
 static const size_t COUNT_OF_RAY = 300;
 static const double DEPTH = 10.0;
+static const double MOVE_SPEED = 0.2;
 
 
 //static double radToDeg(double a)
@@ -53,6 +54,15 @@ void Camera::drawView(QPainter &painter) const
     double width = viewport.width() / COUNT_OF_RAY + 1;
     double height = viewport.height();
 
+//    painter.setPen(Qt::blue);
+//    painter.setBrush(Qt::blue);
+//    painter.drawRect(QRect(0, 0, viewport.width(), viewport.height() / 2));
+
+//    painter.setPen(Qt::green);
+//    painter.setBrush(Qt::green);
+//    painter.drawRect(QRect(0, viewport.height() / 2, viewport.width(), viewport.height() / 2));
+
+
     for(size_t i = 0; i < COUNT_OF_RAY; i++)
     {
         if(m_rays[i].distance == -1) continue;
@@ -78,8 +88,8 @@ void Camera::drawView(QPainter &painter) const
 
 void Camera::moveForward()
 {
-    double dx = 0.2 * cos(m_direction);
-    double dy = 0.2 * sin(m_direction);
+    double dx = MOVE_SPEED * cos(m_direction);
+    double dy = MOVE_SPEED * sin(m_direction);
     m_position.setX(m_position.x() + dx);
     m_position.setY(m_position.y() + dy);
     update();
@@ -87,8 +97,8 @@ void Camera::moveForward()
 
 void Camera::moveBack()
 {
-    double dx = 2 * (-cos(m_direction));
-    double dy = 2 * (-sin(m_direction));
+    double dx = MOVE_SPEED * (-cos(m_direction));
+    double dy = MOVE_SPEED * (-sin(m_direction));
     m_position.setX(m_position.x() + dx);
     m_position.setY(m_position.y() + dy);
     update();

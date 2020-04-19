@@ -7,19 +7,21 @@
 GameForm::GameForm(QWidget *parent) :
     QWidget(parent),
     ui(new Ui::GameForm),
-    m_camera(m_world)
+    m_camera(m_world, QPointF(2.0, 2.0))
 {
     ui->setupUi(this);
     setFocusPolicy(Qt::StrongFocus);
 
     // walls
-    m_world.add(new Object({{0.0, 0.0}, {10.0, 0.0}, {10.0, 1.0}, {0.0, 1.0}}));
-    m_world.add(new Object({{0.0, 0.0}, {0.0, 10.0}, {1.0, 10.0}, {1.0, 0.0}}));
-    m_world.add(new Object({{0.0, 10.0}, {10.0, 10.0}, {10.0, 9.0}, {0.0, 9.0}}));
-    m_world.add(new Object({{9.0, 0.0}, {10.0, 0.0}, {10.0, 10.0}, {9.0, 10.0}}));
+    m_world.add(new Object({{0.0, 0.0}, {10.0, 0.0}}));
+    m_world.add(new Object({{0.0, 0.0}, {0.0, 10.0}}));
+    m_world.add(new Object({{10.0, 0.0}, {10.0, 10.0}}));
+    m_world.add(new Object({{0.0, 10.0}, {10.0, 10.0}}));
 
     m_world.add(new Object({{3.0, 3.0}, {3.0, 4.0}, {2.0, 4.0}}));
-
+    m_world.add(new Object({{5.0, 5.0}, {6.0, 5.0}, {6.0, 6.0}, {5.0, 6.0}}));
+    m_world.add(new Object({{8.0, 1.0}, {9.0, 2.0}, {8.0, 4.0}, {7.0, 2.0}}));
+    m_world.add(new Object({{8.0, 6.0}, {9.0, 6.0}, {8.0, 8.0}}));
 
     m_camera.update();
 

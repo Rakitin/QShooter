@@ -11,7 +11,7 @@
 class Camera
 {
 public:
-    Camera(World &world, QPointF position = {10.0, 10.0}, double direction = 0);
+    Camera(World &world, QPointF position = {0.0, 0.0}, double direction = 0.0);
     void draw(QPainter &painter) const;
     void drawView(QPainter &painter) const;
     void update();
